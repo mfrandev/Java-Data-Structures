@@ -153,13 +153,17 @@ public class ArrayList<E> implements Iterable<Object>{
         // Imagine this is initialized to iterate from the beginning of the array
         int current = 0;
 
-        // If not at the end of the array, return true
+        /**
+         *  If iteration not at the end of the array, return true
+         */
         @Override
         public boolean hasNext() {
             return current < ArrayList.this.length;
         }
 
-        // If not at the end of the array, return the current element
+        /**
+         * If not at the end of the array, return the current element
+         */
         @Override
         public Object next() {
             if(hasNext()) {
@@ -172,7 +176,9 @@ public class ArrayList<E> implements Iterable<Object>{
         
     }
 
-    // Return an instance of the iterator class defined above
+    /**
+     * Return an instance of the iterator class defined above
+     */ 
     @Override
     public Iterator<Object> iterator() {
         return new ArrayListIterator();
