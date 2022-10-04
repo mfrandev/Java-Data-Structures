@@ -71,9 +71,8 @@ public class LinkedList<T> {
         // For iteration termination condition
         int numIter = 0;
 
-        /** 
-         * Check every node to see if it contains the content specified
-         */
+         
+        //Check every node to see if it contains the content specified
         while(numIter < length) {
 
             // Check iterHead during forward iteration
