@@ -112,6 +112,62 @@ public class ArrayListTests {
     }
 
     /**
+     * Tests array list set method which changes the value at a particular index
+     */
+    @Test
+    public void testSetAtValidIndex() {
+
+        // To verify the initial values of the array list
+        int check = 1;
+
+        // Use a for:each loop to verify the initial state of the list
+        for(Object o: myList) {
+            assertEquals((int)o, check++);
+        }
+
+        // Verify the list is of length 5
+        assertEquals(myList.size(), 5);
+
+        // Save the success status of setting the new value at the specified index
+        boolean success = myList.set(Integer.MAX_VALUE, 2);
+        
+        // Verify the length of the array has not changed
+        assertEquals(myList.size(), 5);
+
+        // Verify the set operation was succesful
+        assertTrue(success);
+
+        // Expected contents of my:ist
+        int[] vals = {1, 2, Integer.MAX_VALUE, 4, 5};
+
+        // Verify the contents of myList match the expected contents
+        for(int i = 0; i < myList.size(); i++) {
+            assertEquals(vals[i], (int)myList.get(i));
+        }
+
+    }
+
+    /**
+     * Tests array list set method with 2 indices that should produces failures
+     */
+    @Test
+    public void testSetAtInvalidIndex() {
+
+        // Save the success status of setting the new value at a negative index
+        boolean success = myList.set(Integer.MAX_VALUE, -2);
+
+        // Verify the set operation failed
+        assertFalse(success);
+
+        // Save the success status of setting the new value at an out-of-bounds index
+        success = myList.set(Integer.MAX_VALUE, 5);
+
+        // Verify the operation failed
+        assertFalse(success);
+
+    }
+
+    /**
      * Tests that normal case for deleting by object and by index operates properly
      */
     @Test
@@ -137,7 +193,7 @@ public class ArrayListTests {
 
         // Check that the values of the array list equal the values of the above array
         for(int i = 0; i < expectedArray.length; i++) {
-            assertEquals(expectedArray[i], myList.get(i));
+            assertEquals(expectedArray[i], (int)myList.get(i));
         }
 
     }

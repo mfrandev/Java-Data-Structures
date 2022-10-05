@@ -45,6 +45,25 @@ public class ArrayList<E> implements Iterable<Object>{
     }
 
     /**
+     * Set the value at a particular index in the array list
+     * @param element E: element to set at index
+     * @param index int: position in the array at which to place the element
+     * @return boolean: success status
+     */
+    public boolean set(E element, int index) {
+
+        // If index is too big or small, return false
+        if(index > length - 1 || index < 0) return false;
+
+        // Replace the element at index
+        data[index] = element;
+
+        // Return success
+        return true;
+
+    }
+
+    /**
      * Create a new array double the size of the existing array and copy the old elements in order
      * @param newSize int: Equal to double the size of the old array
      */
@@ -57,9 +76,10 @@ public class ArrayList<E> implements Iterable<Object>{
      * @param n int: index at which to grab the object from
      * @return Object: object at index n in the array
      */
-    public Object get(int n) {
+    @SuppressWarnings("unchecked")
+    public E get(int n) {
         if(n < length || n >= 0) {
-            return data[n];
+            return (E)data[n];
         }
         return null;
     }
