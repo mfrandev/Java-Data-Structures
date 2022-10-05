@@ -114,6 +114,11 @@ public class HashTable<K, V> {
         return numBuckets;
     }
 
+    /**
+     * Add a key/value pair to the hash table
+     * @param key K: key to add
+     * @param value V: value to add and associate with the key
+     */
     public void add(K key, V value) {
 
         // Do not permit null keys or values
@@ -160,38 +165,8 @@ public class HashTable<K, V> {
         // If the load factor is too large now, remake the bucket list 
         if(getLoadFactor() >= 0.75 && !disableLoadFactor) {
 
-            // Save the current list of buckets in a temporary list
-            ArrayList<HashNode<K, V>> temp = buckets;
-
-            // Create a new bucket list that's twice the size of the old one
-            buckets = new ArrayList<>();
-            int numOldBuckets = numBuckets;
-            numBuckets = numBuckets * 2;
-
-            // Must reset the size of the table to prevent load factor from triggering deep recursion
-            size = 0;
-
-            // Set each new bucket equal to null
-            for(int i = 0; i < numBuckets; i++) {
-                buckets.add(null);
-            }
-             
-            // Re-add all of the items previously in the table
-            for(int i = 0; i < numOldBuckets; i++) {
-
-                // Head of the bucket
-                head = temp.get(i);
-
-                // Re-add each item in the current bucket list
-                while(head != null) {
-
-                    // Recursive add call, but this call is guaranteed to be a leaf call 
-                    // because the size of the table has not changed
-                    add(head.getKey(), head.getValue());
-                    head = head.getNextNode();
-                }   
-
-            }
+            // Double the amount of buckts, redistribute the content in the hash table to reduce collisions/collision potential
+            bucketAdditionAndRedistribution();
 
         }
 
@@ -309,6 +284,45 @@ public class HashTable<K, V> {
      */
     private double getLoadFactor() {
         return (1.0 * size) / numBuckets;
+    }
+
+    /**
+     * Helper method for distributing content and adding buckets after load factor is 0.75 or greater
+     */
+    private void bucketAdditionAndRedistribution() {
+
+        // Save the current list of buckets in a temporary list
+        ArrayList<HashNode<K, V>> temp = buckets;
+
+        // Create a new bucket list that's twice the size of the old one
+        buckets = new ArrayList<>();
+        int numOldBuckets = numBuckets;
+        numBuckets = numBuckets * 2;
+
+        // Must reset the size of the table to prevent load factor from triggering deep recursion
+        size = 0;
+
+        // Set each new bucket equal to null
+        for(int i = 0; i < numBuckets; i++) {
+            buckets.add(null);
+        }
+        
+        // Re-add all of the items previously in the table
+        for(int i = 0; i < numOldBuckets; i++) {
+
+            // Head of the bucket
+            HashNode<K, V> head = temp.get(i);
+
+            // Re-add each item in the current bucket list
+            while(head != null) {
+
+                // Recursive add call, but this call is guaranteed to be a leaf call 
+                // because the size of the table has not changed
+                add(head.getKey(), head.getValue());
+                head = head.getNextNode();
+            }   
+
+        }
     }
     
 }
