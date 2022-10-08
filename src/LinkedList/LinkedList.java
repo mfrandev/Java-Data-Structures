@@ -5,9 +5,9 @@ package LinkedList;
  */
 public class LinkedList<T> {
 
-    Node<T> dummyHead;
-    Node<T> dummyTail;
-    int length;
+    protected Node<T> dummyHead;
+    protected Node<T> dummyTail;
+    protected int length;
     
     /**
      * Initialize an empty linked list container
@@ -19,7 +19,7 @@ public class LinkedList<T> {
     }
 
     /**
-     * Add a new node to the linked list
+     * Add a new node to the end of the linked list
      * @param content T: Content to add in a new node
      * @return a success indicator
      */
