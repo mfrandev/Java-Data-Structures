@@ -9,3 +9,9 @@
     <li>Stack</li>
     <li>Queue</li>
 </ol>
+<p>To run my unit tests:
+<ol>
+    <li>Go to /Jars/tests/</li>
+    <li>Make sure Java is installed</li>
+    <li>Enter 'java -jar Java-Data-Structures.jar' on the command line</li>
+</ol>

@@ -4,9 +4,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
-
 /**
  * Main JUnit test runner
  */
