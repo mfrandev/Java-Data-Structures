@@ -8,6 +8,8 @@
     <li>Hash Table</li>
     <li>Stack</li>
     <li>Queue</li>
+    <li>Min-Heap</li>
+    <li>Max-Heap</li>
 </ol>
 <p>To run my unit tests:
 <ol>
