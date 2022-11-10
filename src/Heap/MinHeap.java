@@ -2,6 +2,8 @@ package Heap;
 
 import java.util.Arrays;
 
+// Help for problems while making this implementations were solved by the code found at https://gist.github.com/snarkbait/86c7a4bc743e8f327dbc
+
 @SuppressWarnings("unchecked")
 public class MinHeap<T extends Comparable<T>> implements Heap<T> {
 
