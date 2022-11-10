@@ -89,13 +89,14 @@ public class ArrayList<E> implements Iterable<Object>{
      * @param n int: index of the element to remove
      * @return Object: value at index n
      */
-    public Object delete(int n) {
+    @SuppressWarnings("unchecked")
+    public E delete(int n) {
 
         // If a valid index was entered
         if(n >= 0 && n < length) {
 
             // Grab the object at n
-            Object o = data[n];
+            E o = (E)data[n];
 
             // Nullify the spot
             data[n] = null;
